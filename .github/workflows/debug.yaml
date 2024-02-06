@@ -22,9 +22,6 @@ jobs:
 
     steps:
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@HEAD
-
       - uses: actions/checkout@HEAD
 
       - uses: r-lib/actions/setup-pandoc@HEAD
@@ -38,3 +35,6 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@HEAD
