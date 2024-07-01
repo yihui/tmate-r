@@ -14,27 +14,13 @@ jobs:
     strategy:
       matrix:
         config:
-          - {os: windows-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: true
 
     steps:
-
-      - uses: actions/checkout@HEAD
-
-      - uses: r-lib/actions/setup-pandoc@HEAD
-      
-      - uses: r-lib/actions/setup-tinytex@HEAD
-        env:
-          TINYTEX_INSTALLER: TinyTeX
-
-      - uses: r-lib/actions/setup-r@HEAD
-        with:
-          r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }}
-          use-public-rspm: true
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@HEAD
