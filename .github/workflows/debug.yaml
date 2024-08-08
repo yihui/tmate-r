@@ -33,4 +33,4 @@ jobs:
           use-public-rspm: true
 
       - run: |
-        Rscript n.R
+          Rscript n.R
