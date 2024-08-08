@@ -1,4 +1,4 @@
-install.packages('gsDesign2')
+install.packages('gsDesign2', quiet = TRUE)
 
 ratio <- 1
 
@@ -30,7 +30,7 @@ x <- gsDesign2::gs_design_ahr(enroll_rate = enroll_rate, fail_rate = fail_rate,
                               info_frac = info_frac, analysis_time = analysis_time, 
                               upper = upper, upar = upar, test_upper = test_upper,
                               lower = lower, lpar = lpar, test_lower = test_lower,
-                              binding = binding)
+                              binding = binding) |> gsDesign2::to_integer()
 
 n <- x$analysis$n
 n - round(n)
