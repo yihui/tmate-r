@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         config:
-          - {os: macOS-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: macOS-latest,  r: 'release', http-user-agent: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -24,11 +24,11 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@HEAD
+
       - uses: r-lib/actions/setup-r@HEAD
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@HEAD
