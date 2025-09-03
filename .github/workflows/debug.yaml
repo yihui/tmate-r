@@ -24,6 +24,9 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
+      - name: install pandoc devel
+        uses: cderv/actions/setup-pandoc-nightly@nightly-pandoc
+
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@HEAD
 
