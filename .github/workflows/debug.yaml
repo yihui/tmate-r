@@ -7,6 +7,8 @@ name: Debug
 
 jobs:
   debug:
+    container:
+      image: rockylinux:8
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -14,7 +16,7 @@ jobs:
     strategy:
       matrix:
         config:
-          - {os: windows,  r: 'release', http-user-agent: 'release'}
+          - {os: ubuntu-24.04-arm,  r: 'release', http-user-agent: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
