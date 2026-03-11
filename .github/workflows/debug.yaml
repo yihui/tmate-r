@@ -7,8 +7,6 @@ name: Debug
 
 jobs:
   debug:
-    container:
-      image: rockylinux:8
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -26,8 +24,20 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
+      - name: Start container
+        run: |
+          docker run -d --name mycontainer \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            rockylinux:8 \
+            tail -f /dev/null  # keep it alive
+
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@HEAD
+
+      - name: Stop container
+        if: always()
+        run: docker stop mycontainer && docker rm mycontainer
 
       - uses: r-lib/actions/setup-r@HEAD
         with:
