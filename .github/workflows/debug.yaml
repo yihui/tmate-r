@@ -26,11 +26,11 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@HEAD
+
       - uses: r-lib/actions/setup-r@HEAD
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@HEAD
