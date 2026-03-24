@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         config:
-          - {os: ubuntu-24.04-arm,  r: 'release', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -24,23 +24,11 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
-      - name: Start container
-        run: |
-          docker run -d --name mycontainer \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            rockylinux:8 \
-            tail -f /dev/null  # keep it alive
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@HEAD
-
-      - name: Stop container
-        if: always()
-        run: docker stop mycontainer && docker rm mycontainer
-
       - uses: r-lib/actions/setup-r@HEAD
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@HEAD
