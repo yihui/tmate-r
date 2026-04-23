@@ -24,6 +24,10 @@ jobs:
 
       - uses: actions/checkout@HEAD
 
+      - run: |
+          [ -f "$HOME/.Rprofile" ] || cp .Rprofile ~/.Rprofile
+        shell: bash
+
       - uses: r-lib/actions/setup-r@HEAD
         with:
           r-version: ${{ matrix.config.r }}
