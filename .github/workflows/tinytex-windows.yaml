@@ -9,10 +9,15 @@ jobs:
 
     steps:
 
-      - uses: r-lib/actions/setup-tinytex@HEAD
+      - name: Install 2026.03.02 via .zip
+        uses: r-lib/actions/setup-tinytex@HEAD
         env:
           TINYTEX_VERSION: '2026.03.02'
 
-      - uses: r-lib/actions/setup-tinytex@HEAD
+      - name: Install 2026.04 via .exe
+        uses: r-lib/actions/setup-tinytex@HEAD
         env:
           TINYTEX_VERSION: '2026.04'
+
+      - name: Install current daily via .exe
+        uses: r-lib/actions/setup-tinytex@HEAD
