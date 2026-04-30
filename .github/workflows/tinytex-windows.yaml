@@ -10,9 +10,9 @@ jobs:
     steps:
 
       - uses: r-lib/actions/setup-tinytex@HEAD
-        with:
+        env:
           TINYTEX_VERSION: '2026.03.02'
 
       - uses: r-lib/actions/setup-tinytex@HEAD
-        with:
+        env:
           TINYTEX_VERSION: '2026.04'
