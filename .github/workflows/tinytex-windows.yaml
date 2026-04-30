@@ -4,20 +4,36 @@ on:
 name: Test TinyTeX installers on Windows
 
 jobs:
-  debug:
+  test-1:
     runs-on: windows-latest
-
+    name: Install 2026.03.02 via .zip
     steps:
-
-      - name: Install 2026.03.02 via .zip
+      - name: 
         uses: r-lib/actions/setup-tinytex@HEAD
         env:
           TINYTEX_VERSION: '2026.03.02'
 
-      - name: Install 2026.04 via .exe
-        uses: r-lib/actions/setup-tinytex@HEAD
+  test-2:
+    runs-on: windows-latest
+    name: Install 2026.04 via .exe
+    steps:
+      - uses: r-lib/actions/setup-tinytex@HEAD
         env:
           TINYTEX_VERSION: '2026.04'
 
-      - name: Install current daily via .exe
-        uses: r-lib/actions/setup-tinytex@HEAD
+  test-3:
+    runs-on: windows-latest
+    name: Install current daily via .exe
+    steps:
+       - uses: r-lib/actions/setup-tinytex@HEAD
+
+  test-4:
+    runs-on: windows-latest
+    name: Install current daily via old .bat
+    steps:
+      - shell: bash
+        run: |
+          curl -O https://github.com/rstudio/tinytex/raw/d4da521cdff2afeb6e033eeddcbe2e2fa8a5fb09/tools/install-bin-windows.bat
+      - shell: powershell
+        run: |
+          & install-bin-windows.bat
