@@ -33,7 +33,7 @@ jobs:
     steps:
       - shell: bash
         run: |
-          curl -O https://github.com/rstudio/tinytex/raw/d4da521cdff2afeb6e033eeddcbe2e2fa8a5fb09/tools/install-bin-windows.bat
+          curl -OL https://github.com/rstudio/tinytex/raw/d4da521cdff2afeb6e033eeddcbe2e2fa8a5fb09/tools/install-bin-windows.bat
       - shell: cmd
         run: |
           call install-bin-windows.bat
